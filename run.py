@@ -17,8 +17,7 @@ SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 # sales = SHEET.worksheet('sales')
 # data = sales.get_all_values()
 # print(data)
-def get_sales_values():
-    
+def get_sales_values():   
     ''' Get sales figures input from the user '''
 
     print('Please enter sales data from the last market.')
@@ -26,7 +25,24 @@ def get_sales_values():
     print('Example: 10,20,30,40,50,70\n')
 
     data_str = input('Please enter your data here:')
-    print(f'The data provided is {data_str}')
+    sales_data = data_str.split(',')
+    validate_data(sales_data)
 
 
-get_sales_values()
+
+
+def validate_data(values):
+    '''Insidet the try, converts all string values into integers. 
+    Raises ValueError if striings cannot be converted into int,
+    or if there aren't exactly six values.
+     '''
+    try:
+        if len(values) != 6:
+            raise ValueError(
+                  f'Exactly 6 values required, you provided {len(values)}'
+            )
+    except ValueError as e:
+        print(f'Invalid data: {e}, please try again.\n')        
+
+get_sales_values()    
+   
