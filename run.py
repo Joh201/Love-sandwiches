@@ -13,9 +13,20 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
-sales = SHEET.worksheet('sales')
-data = sales.get_all_values()
-print(data)
+
+# sales = SHEET.worksheet('sales')
+# data = sales.get_all_values()
+# print(data)
+def get_sales_values():
+    
+    ''' Get sales figures input from the user '''
+
+    print('Please enter sales data from the last market.')
+    print('Data should be six numbers, separated by commas.')
+    print('Example: 10,20,30,40,50,70\n')
+
+    data_str = input('Please enter your data here:')
+    print(f'The data provided is {data_str}')
 
 
-
+get_sales_values()
